@@ -64,9 +64,9 @@ workflows:
       # - test-frondend:
       #     requires:
       #       - build-frontend
-      - build-backend:
-          requires:
-            - build-frondend
+      - build-backend
+          # requires:
+          #   - build-frondend
       # - test-backend:
       #     requires:
       #       - build-backend

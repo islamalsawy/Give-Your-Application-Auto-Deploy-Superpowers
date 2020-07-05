@@ -29,8 +29,6 @@ jobs:
           command: |
             cd frontend
             npm run test
-      - store_test_results:
-          path: /starter
   build-backend:
     docker:
       - image: circleci/node:13.8.0

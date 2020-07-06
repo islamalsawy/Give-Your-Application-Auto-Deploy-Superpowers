@@ -64,7 +64,7 @@ jobs:
       - run:
           command: |
             cd frontend
-            npm audit --audit-level=critical
+            npm audit fix --audit-level=critical --force
   audit-check-backend:
     docker:
       - image: circleci/node:13.8.0
@@ -73,7 +73,7 @@ jobs:
       - run:
           command: |
             cd backend
-            npm audit --audit-level=critical                   
+            npm audit fix --audit-level=critical --force                  
 workflows:
   default:
     jobs:

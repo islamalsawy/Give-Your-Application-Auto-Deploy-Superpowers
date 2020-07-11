@@ -73,7 +73,51 @@ jobs:
       - run:
           command: |
             cd backend
-            npm audit fix --audit-level=critical --force                  
+            npm audit fix --audit-level=critical --force 
+  create_infrastructure_backend:
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - checkout
+      - run:
+          name: Ensure backend infrastructure exist
+          command: |
+            aws cloudformation deploy \
+              --template-file .circleci/files/backend.yml \
+              --stack-name my-stack
+  create_infrastructure_cloudfront:
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - checkout
+      - run:
+          name: Ensure cloudfront infrastructure exist
+          command: |
+            aws cloudformation deploy \
+              --template-file .circleci/files/cloudfront.yml \
+              --stack-name my-stack2  
+  create_infrastructure_frontend:
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - checkout
+      - run:
+          name: Ensure frontend infrastructure exist
+          command: |
+            aws cloudformation deploy \
+              --template-file .circleci/files/frontend.yml \
+              --stack-name my-stack3 
+  create_infrastructure_network:
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - checkout
+      - run:
+          name: Ensure network infrastructure exist
+          command: |
+            aws cloudformation deploy \
+              --template-file .circleci/files/network.yml \
+              --stack-name my-stack4                           
 workflows:
   default:
     jobs:
@@ -93,3 +137,7 @@ workflows:
       - audit-check-backend:
           requires:
             - audit-check-frontend
+      - create_infrastructure_backend
+      - create_infrastructure_cloudfront
+      - create_infrastructure_frontend
+      - create_infrastructure_network

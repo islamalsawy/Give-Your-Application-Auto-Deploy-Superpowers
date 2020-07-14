@@ -85,6 +85,7 @@ jobs:
             aws cloudformation deploy \
               --template-file .circleci/files/backend.yml \
               --stack-name backend
+              --region us-east-2
   create_infrastructure_cloudfront:
     docker:
       - image: amazon/aws-cli

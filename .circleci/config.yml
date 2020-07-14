@@ -106,7 +106,7 @@ jobs:
           command: |
             aws cloudformation deploy \
               --template-file .circleci/files/frontend.yml \
-              --stack-name my-stack3 
+              --stack-name frontend 
   create_infrastructure_network:
     docker:
       - image: amazon/aws-cli
@@ -117,7 +117,7 @@ jobs:
           command: |
             aws cloudformation deploy \
               --template-file .circleci/files/network.yml \
-              --stack-name my-stack4                           
+              --stack-name network                           
 workflows:
   default:
     jobs:

@@ -3,7 +3,7 @@ Description: >
 
 Parameters:
   ID:
-    Description: "islam0402550404"
+    Description: "islam2550404"
     Type: String
 
 Resources:
@@ -30,7 +30,7 @@ Resources:
         - Ref: InstanceSecurityGroup
       KeyName: udacity
        # if this ami id is not available for you, you can find another (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html)
-      ImageId: ami-068663a3c619dd892
+      ImageId: ami-07c1207a9d40bc3bd
       Tags:
         - Key: Name
           Value: !Sub backend-${ID}

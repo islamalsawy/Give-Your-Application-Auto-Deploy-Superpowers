@@ -84,7 +84,7 @@ jobs:
           command: |
             aws cloudformation deploy \
               --template-file .circleci/files/backend.yml \
-              --stack-name my-stack
+              --stack-name backend
   create_infrastructure_cloudfront:
     docker:
       - image: amazon/aws-cli
@@ -95,7 +95,7 @@ jobs:
           command: |
             aws cloudformation deploy \
               --template-file .circleci/files/cloudfront.yml \
-              --stack-name my-stack2  
+              --stack-name cloudfront  
   create_infrastructure_frontend:
     docker:
       - image: amazon/aws-cli
